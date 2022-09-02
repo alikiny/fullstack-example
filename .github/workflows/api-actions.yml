@@ -15,6 +15,7 @@ jobs:
         with:
           node-version: "16.x"
           cache: "npm"
+          cache-dependency-path: api/package-lock.json
       - name: Install dependencies
         run: yarn install
       - name: testing
