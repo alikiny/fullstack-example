@@ -1,9 +1,9 @@
 name: compose action
 on: push
-jobs: 
+jobs:
   check_api_folder:
     name: check api folder
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: api
