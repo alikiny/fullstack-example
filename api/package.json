@@ -13,7 +13,7 @@
     "build": "tsc",
     "watch-ts": "tsc -w",
     "test:watch": "jest --watchAll",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix"
   },
   "dependencies": {
