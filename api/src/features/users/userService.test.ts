@@ -1,4 +1,4 @@
-import connect, { MongodHelper } from '../../helpers/db-helper'
+/* import connect, { MongodHelper } from '../../helpers/db-helper'
 import userService from './userService'
 import { listInsert, user4, user2, user3 } from './user.fixture'
 import User from './User'
@@ -58,3 +58,4 @@ describe('Test userService', () => {
     expect((await User.find()).length).toBe(2)
   })
 })
+ */
