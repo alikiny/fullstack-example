@@ -1,0 +1,40 @@
+version: "3" #optional
+services:
+  # mongo database is only needed if your project use local mongodb driver
+  # if you use mongo atlas, remove this service from docker compose file
+  database:
+    image: mongo
+    volumes:
+      - mongo-db:/data/db
+      # create a docker volume called mongo-db and attach to mongo database storage
+    ports:
+      - "27017:27017"
+  backend:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./api/src:/api/src
+      #- In Dockerfile of api folder, we specify the WORKDIR as /api
+      #- Use bind mount as volume for the backend. "./api(src" represent the current
+      # src directory in your local machine, so any changes we made in local project will be mounted 
+      # into the container, without re-building the image
+    depends_on:
+      - database
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+      - ./client/src:/app/src
+      # Use bind mount as the volume for frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend # tell frontend service to be built only after backend service is sucessfully buit
+volumes:
+  #if there is no need of mongo, then remove this mongo-db volume
+  mongo-db:
+    driver: local
