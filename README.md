@@ -1,32 +1,94 @@
-# Fullstack-Typescript-Project
+# EPO Seconhand Shop
 
-You can follow the same topics as your backend project. It is also possible to switch the topic
+This project use MERN stack to build a secondhand platform, where users can register as sellers and trade their belogings. Site is managed by admins, guests only can sign up as either "seller" or "buyer".
 
-## Prerequisites
+## Main stack
+![React](https://img.shields.io/badge/React-v.18-grey?labelColor=blue)
+![React-Redux](https://img.shields.io/badge/React--Redux-v.8-grey?labelColor=purple)
+![SASS](https://img.shields.io/badge/SASS-v.1-grey?labelColor=hotpink)
+![react-hook-form](https://img.shields.io/badge/react--hook--form-v.7-grey?labelColor=hotpink)
+![Nodejs](https://img.shields.io/badge/Nodejs-v.16-grey?labelColor=green)
+![Express](https://img.shields.io/badge/Express-v.4-grey?labelColor=red)
+![Passport](https://img.shields.io/badge/PassportJs-v.0-grey?labelColor=blue)
+![Jest](https://img.shields.io/badge/Jest-v.28-grey?labelColor=orrange)
+![Stripe](https://img.shields.io/badge/Stripe-v.10-grey?labelColor=yellowgreen)
+![SendGrid](https://img.shields.io/badge/SendGrid-v.7-grey?labelColor=hotpink)
+![mongoose](https://img.shields.io/badge/mongoose-v.7-grey?labelColor=yellow)
 
-1. Install mongodb or use MongoDB Atlas (cloud version) or:
-2. Install postgresql or use heroku (or any cloud-host psql database)
-2. Install nodejs (if you don't have it already)
+## Project structure
 
-## Setting Up for `API folder`
+1. api folder - backend
+<pre>
+├── global.d.ts
+├── jest.config.js
+├── package.json
+├── src
+│   ├── app.ts
+│   ├── config
+│   ├── features
+│   │   ├── carts
+│   │   ├── categories
+│   │   ├── cities
+│   │   ├── images
+│   │   ├── mails
+│   │   ├── productReviews
+│   │   ├── products
+│   │   ├── stripe
+│   │   ├── userReviews
+│   │   └── users
+│   ├── fixtures
+│   ├── helpers
+│   ├── middlewares
+│   ├── server.ts
+│   └── util
+├── tsconfig.json
+</pre>
+2. client folder - frontend
+<pre>
+├── package.json
+├── public
+├── src
+│   ├── App.tsx
+│   ├── axios
+│   ├── components
+│   ├── hooks
+│   ├── index.tsx
+│   ├── react-app-env.d.ts
+│   ├── redux
+│   ├── reportWebVitals.ts
+│   ├── router
+│   ├── setupTests.ts
+│   ├── styles
+│   └── types
+├── test
+└── tsconfig.json
+</pre>
+## Key features
 
-1. Create a `.env` file in the root directory and copy the content from `.env.example`
+* Common features for all users
+  * Login
+  * Register
+  * Buy products / Update products in cart
+  * Modify account info (except email)
+  * Delete own account
+* Typical features for sellers
+  * CRUD operations for own products
+* Typical features for admins
+  * Manage all products, users, carts, and other information
 
-2. Make sure mongodb is running (if you are using local MongoDB)
-3. Install dependencies: `yarn`
-4. Use this command for development mode: `yarn run start:dev`
-5. If you need to customize your env, take a look at `secrets.ts` file
+## How to use
 
-## Requirements
+`git clone`
+Clone the repo into your all local machine
 
-Below are the steps that you need to finish in order to finish this module
-
-1. Explore the code base of the api folder, start with `server.ts` and `app.ts`
-2. Client folder is for the react frontend. Start with `api` first before moving on to `client`
-3. Create all the schema for your ERD
-4. Create CRUD endpoints for all the schema
-5. Separate the routers and controller, controller goes into the controller folders. Controllers only handles request and response, and will call service to process business logics.
-6. Create more controller for your app if needed. Eg: borrow books, add product to order
-7. For business logic like saving data to database, filtering, searching or updating, these are services and goes into services folder
-8. Add authentication middleware using passport, google and jwt strategy
-9. Add tests for your controllers and services. Remember to create the jwt token for your tests, because if your controller is protected, then the test should send the token also
+- In each folder, run `npm install` to add all the independencies. Check other scripts in the package.json files.
+- In api folder, create .env file with the key-pair values
+  - MONGODB_URI *MongoDB database*
+  - JWT_SECRET *jwt secret string to encrypt/decrypt data*
+  - STRIPE_API_SECRET_TEST *stripe api to enable payment service*
+  - STRIPE_WEBHOOK *stripe webhook to listen to payment event*
+  - SENDGRID_API_KEY *sengrid api key to send email*
+  - SENDER *sender email in sendgrid*
+  - GOOGLE_CLIENT_ID *Google client id to verify login with google*
+  - GOOGLE_CLIENT_SECRET *Google client secret to verify login with google*
+  - PORT *port to run express server locally*
